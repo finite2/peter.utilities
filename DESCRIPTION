@@ -1,0 +1,9 @@
+Package: peter.utilities
+Type: Package
+Title: Peter's utility functions
+Version: 1.1
+Date: 2015-06-16
+Author: Peter Dutton
+Maintainer: Peter Dutton <peter.dutton@ndorms.ox.ac.uk>
+Description: contains so useful utility functions for R
+License: None
