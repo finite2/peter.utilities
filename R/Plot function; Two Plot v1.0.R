@@ -1,7 +1,7 @@
 
 
 
-plot.two=function(x1,y1,x2,y2,xlim=NULL,ylim1=NULL,ylim2=NULL,type1="points",type2="points",col1="red",col2="blue",cex=1,cex.lab=2,pch1=16,pch2=16,xlab="",ylab1="",ylab2="",add=FALSE,xpos=1,mtext.line=2.9){
+plot.two=function(x1,y1,x2,y2,xlim=NULL,ylim1=NULL,ylim2=NULL,type1="points",type2="points",col1="red",col2="blue",cex=1,cex.lab=2, cex.axis = cex.lab,pch1=16,pch2=16,xlab="",ylab1="",ylab2="",add=FALSE,xpos=1,mtext.line=2.9){
 
   if(is.null(xlim)){
     xlim=range(pretty(c(min(x1,x2)-1e-3,max(x1,x2)+1e-3)))
@@ -49,18 +49,18 @@ plot.two=function(x1,y1,x2,y2,xlim=NULL,ylim1=NULL,ylim2=NULL,type1="points",typ
   box()
   if(is.null(xlab)==FALSE){
     if(xpos==1){
-      axis(1,pretty(c(x1,x2)),cex.axis=cex)
+      axis(1,pretty(c(x1,x2)),cex.axis=cex.axis)
       mtext(xlab,  side = 1, line = mtext.line, cex = cex.lab)
     } else{
-      axis(3,pretty(c(x1,x2)),cex.axis=cex)
+      axis(3,pretty(c(x1,x2)),cex.axis=cex.axis)
       mtext(xlab,  side = 3, line = mtext.line, cex = cex.lab)
     }
   }
 
-  axis(2,pos=xlim[1],label=pretty(ylim1),at=0:(length(pretty(ylim1))-1)/(length(pretty(ylim1))-1),col=col1,col.axis=col1,cex.axis=cex)
+  axis(2,pos=xlim[1],label=pretty(ylim1),at=0:(length(pretty(ylim1))-1)/(length(pretty(ylim1))-1),col=col1,col.axis=col1,cex.axis=cex.axis)
   mtext(ylab1, side = 2, line = mtext.line, cex = cex.lab, col=col1)
 
-  axis(4,pos=xlim[2],label=pretty(ylim2),at=0:(length(pretty(ylim2))-1)/(length(pretty(ylim2))-1),col=col2,col.axis=col2,cex.axis=cex)
+  axis(4,pos=xlim[2],label=pretty(ylim2),at=0:(length(pretty(ylim2))-1)/(length(pretty(ylim2))-1),col=col2,col.axis=col2,cex.axis=cex.axis)
   mtext(ylab2, side = 4, line = mtext.line, cex = cex.lab, col=col2)
 
 

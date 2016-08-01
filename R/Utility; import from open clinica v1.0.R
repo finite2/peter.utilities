@@ -38,7 +38,9 @@ import.open.clinical.batch=function(path,trial.stub,db.name,new.folder,del.stub=
     fnames=gsub(del.stub,"",fnames)
   }
 
-  save(list=fnames,file=paste0(new.folder,db.name,".RData"))
+  db.list = c(fnames,"db.list")
+
+  save(list=db.list,file=paste0(new.folder,db.name,".RData"))
 
 }
 
