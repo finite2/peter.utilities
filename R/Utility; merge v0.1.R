@@ -1,5 +1,12 @@
 
 
+#' Merge databases
+#'
+#' Provides a function simular to merge in Stata to merge data from two data.frames.
+#'
+#' @param merge.param A vector of column names to use to merge data
+#' @param db1,db2 The data.frames to merge
+#' @param entries1,entries2 1 or "m" to tell it whether to do 1:1, 1:m or m:1 matching between databases
 ut.merge=function(merge.param,db1,db2,entries1,entries2){
 
 
