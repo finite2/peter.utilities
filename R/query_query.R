@@ -73,6 +73,7 @@ query = function(q, data, validation, CRF, mess, parameters = NULL, patid = "pat
 }
 
 #' @describeIn query A short hand version which will find the parameters from the global environment
+#' @export queryQ
 queryQ = function(){
 
   if(!exists("patid", mode = "any")){

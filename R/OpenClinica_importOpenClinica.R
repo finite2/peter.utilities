@@ -66,7 +66,7 @@ import.openClinica=function(txt,path,dates=NULL){
 
   # Conservatively remove unwanted variable
   trial.data$item_trial.data_id=NULL
-  # trial.data$ssoid=NULL
+  trial.data$ssoid=NULL
   trial.data$oc_event_start_date=NULL
   trial.data$oc_event_end_date=NULL
   trial.data$event_status=NULL
