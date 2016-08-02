@@ -3,6 +3,7 @@
 export(OC_posIXct)
 export(import.openClinica)
 export(import.openClinica.batch)
+export(query)
 export(queryList)
 export(queryQ)
 import(gmp)
