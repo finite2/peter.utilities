@@ -29,9 +29,9 @@ query = function(q, data, validation, CRF, mess, parameters = NULL, patid = "pat
   nme = names(data)
 
   ev = if(reject){
-    with(data,eval(validation))
+    sapply(with(data,eval(validation)), function(x) isTRUE(x))
   } else {
-    with(data,!eval(validation))
+    sapply(with(data,!eval(validation)), function(x) isTRUE(x))
   }
   dsub = data[ev,]
 
@@ -97,9 +97,9 @@ queryQ = function(){
   nme = names(data)
 
   ev = if(reject){
-    with(data,eval(validation))
+    sapply(with(data,eval(validation)), function(x) isTRUE(x))
   } else {
-    with(data,!eval(validation))
+    sapply(with(data,!eval(validation)), function(x) isTRUE(x))
   }
   dsub = data[ev,]
 
