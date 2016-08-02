@@ -23,6 +23,7 @@
 #' @import gmp
 #' @importFrom gmp nextprime
 #' @importFrom gmp as.bigz
+#' @export query
 query = function(q, data, validation, CRF, mess, parameters = NULL, patid = "patid", repeatLine = NA, reject = TRUE, prnt = TRUE){
   mod = nextprime(10^30 - 10^29)
   nme = names(data)
