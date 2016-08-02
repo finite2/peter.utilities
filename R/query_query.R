@@ -25,7 +25,7 @@
 #' @importFrom gmp as.bigz
 #' @export query
 query = function(q, data, validation, CRF, mess, parameters = NULL, patid = "patid", repeatLine = NA, reject = TRUE, prnt = TRUE){
-  mod = nextprime(10^30 - 10^29)
+  mod = as.bigz("900000000000000046043660025881") # nextprime(10^30 - 10^29)
   nme = names(data)
 
   ev = if(reject){
@@ -93,7 +93,7 @@ queryQ = function(){
     reject = TRUE
   }
 
-  mod = nextprime(10^30 - 10^29)
+  mod = as.bigz("900000000000000046043660025881") # nextprime(10^30 - 10^29)
   nme = names(data)
 
   ev = if(reject){
