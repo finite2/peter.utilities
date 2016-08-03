@@ -5,7 +5,7 @@ Version: 1.1
 Date: 2015-06-16
 Author: Peter Dutton
 Maintainer: Peter Dutton <peter.dutton@ndorms.ox.ac.uk>
-Description: contains so useful utility functions for R
+Description: Contains some useful utility functions for R.
 depends: gmp
 License: None
 RoxygenNote: 5.0.1
