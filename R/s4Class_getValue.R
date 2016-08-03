@@ -1,3 +1,4 @@
+#' @export getValue
 getValue=function(txtVar,s4object){
   if(grepl("_",txtVar)){
     i2=str_split(txtVar,"_")[[1]]

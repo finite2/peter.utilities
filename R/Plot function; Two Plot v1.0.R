@@ -1,6 +1,6 @@
 
 
-
+#' @export plot.two
 plot.two=function(x1,y1,x2,y2,xlim=NULL,ylim1=NULL,ylim2=NULL,type1="points",type2="points",col1="red",col2="blue",cex=1,cex.lab=2, cex.axis = cex.lab,pch1=16,pch2=16,xlab="",ylab1="",ylab2="",add=FALSE,xpos=1,mtext.line=2.9){
 
   if(is.null(xlim)){

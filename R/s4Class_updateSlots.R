@@ -1,3 +1,4 @@
+#' @export updateSlots
 updateSlots=function(rowID,simsToRun,s4object){
 
   for(txtVar in names(simsToRun)[2:((dim(simsToRun)[2]-2))]){

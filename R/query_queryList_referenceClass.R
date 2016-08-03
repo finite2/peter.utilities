@@ -6,6 +6,7 @@
 #' @field queryRun A number denoting the query run. Useful for seeing what queries are still active.
 
 # use a reference class so that we don't need to return the results. This works since there is only one copy and everything else is a reference to this copy.
+#' @exportClass dataQueries
 setRefClass("dataQueries", fields = c("q"="data.frame", queryRun = "numeric"))
 
 

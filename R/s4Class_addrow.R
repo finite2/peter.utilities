@@ -1,3 +1,4 @@
+#' @export addrow
 addrow=function(s4object,simsToRun){
   dm=dim(simsToRun)
   nm=names(simsToRun)[2:((dim(simsToRun)[2]-2))]
