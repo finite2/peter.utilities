@@ -105,7 +105,7 @@ import.openClinica.batch = function(path,trialStub,dbName,newFolder,delStub=""){
       }
 
       # trialData[[fname]]=import.from.open.clinica(file,path,newFolder,dates=NULL)
-      assign(fname,import.openClinica(file,path,newFolder,dates=NULL))
+      assign(fname,import.openClinica(file,path,dates=NULL))
       fnames = c(fnames, fname)
       #print(trialData[[fname]])
     }
