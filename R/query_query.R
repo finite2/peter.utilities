@@ -40,21 +40,26 @@ query = function(q, data, validation, CRF, mess, parameters = NULL, patid = "pat
   counter = c(dma[1],0)
   if(dma[1] > 0){
     for(i in 1:dma[1]){
-
-      text = paste0(dsub[i,patid], CRF, mess, paste0(validation,collapse = ","))
+      a = 0
+      text = paste0(dsub[i,patid], CRF, repeatLine, mess, paste0(validation,collapse = ","))
       code = .encode(text)
-      if(code %in% q$q$identifier){
-        counter = counter + c(-1,1)
-        lineNumber = which(code == q$q$identifier)
+      dm = dim(q$q)
 
-        if(q$q$queryRun[lineNumber] != q$queryRun){
-          q$q$STATSresolved[lineNumber] = "No"
-          q$q$firstQuery[lineNumber] = "No"
+      if(dm[1] > 0){
+        if(code %in% q$q$identifier){
+          a = 1
+          counter = counter + c(-1,1)
+          lineNumber = which(code == q$q$identifier)
 
+          if(q$q$queryRun[lineNumber] != q$queryRun){
+            q$q$STATSresolved[lineNumber] = "No"
+            q$q$firstQuery[lineNumber] = "No"
+
+          }
+          q$q$queryRun[lineNumber] = q$queryRun
         }
-        q$q$queryRun[lineNumber] = q$queryRun
-      } else {
-        dm = dim(q$q)
+      }
+      if(a == 0){
 
         thisMessage = mess
         if(!is.null(parameters)){
@@ -105,24 +110,30 @@ queryQ = function(){
   dsub = data[ev,]
 
   dma = dim(dsub)
+  # print(dsub)
   counter = c(dma[1],0)
   if(dma[1] > 0){
     for(i in 1:dma[1]){
-
-      text = paste0(dsub[i,patid], CRF, mess, paste0(validation,collapse = ","))
+      a = 0
+      text = paste0(dsub[i,patid], CRF, repeatLine, mess, paste0(validation,collapse = ","))
       code = .encode(text)
-      if(code %in% q$q$identifier){
-        counter = counter + c(-1,1)
-        lineNumber = which(code == q$q$identifier)
+      dm = dim(q$q)
 
-        if(q$q$queryRun[lineNumber] != q$queryRun){
-          q$q$STATSresolved[lineNumber] = "No"
-          q$q$firstQuery[lineNumber] = "No"
+      if(dm[1] > 0){
+        if(code %in% q$q$identifier){
+          a = 1
+          counter = counter + c(-1,1)
+          lineNumber = which(code == q$q$identifier)
 
+          if(q$q$queryRun[lineNumber] != q$queryRun){
+            q$q$STATSresolved[lineNumber] = "No"
+            q$q$firstQuery[lineNumber] = "No"
+
+          }
+          q$q$queryRun[lineNumber] = q$queryRun
         }
-        q$q$queryRun[lineNumber] = q$queryRun
-      } else {
-        dm = dim(q$q)
+      }
+      if(a == 0){
 
         thisMessage = mess
         if(!is.null(parameters)){
