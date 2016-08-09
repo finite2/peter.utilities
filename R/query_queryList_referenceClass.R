@@ -20,7 +20,7 @@ setRefClass("dataQueries", fields = c("q"="data.frame", queryRun = "numeric"))
 #' @export queryList
 queryList = function( q = NULL, queryRun = 1){
   if(is.null(q)){
-    coln = c("id","identifier","queryRun","patid","CRF","repeatLine","firstQuery","STATScomments","comments","resolved","STATSresolved")
+    coln = c("id","identifier","queryRun","patid","CRF","repeatLine1","repeatLine2","firstQuery","STATScomments","comments","resolved","STATSresolved")
     q = data.frame(matrix("",nrow=0,ncol=length(coln)), stringsAsFactors = FALSE)
     names(q) = coln
   } else {

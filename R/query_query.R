@@ -11,7 +11,7 @@
 #' @param mess The message to return if any data fails the validation
 #' @param parameters a vector of column names to append to the message (string)
 #' @param patid Name for the main identifier column. Repeat line can take a second. Any others should be added to parameters.
-#' @param repeatLine Name of a line reference column when data is in long format with respect to patid
+#' @param repeatLine1,repeatLine2 Name of a line reference column when data is in long format with respect to patid
 #' @param reject Logical should the validation be TRUE or FALSE to report the query?
 #' @param prnt Logical should the number of failed queries be returned as a message?
 #'
@@ -25,7 +25,7 @@
 #' @importFrom gmp as.bigz
 #' @importFrom gmp %*%
 #' @export query
-query = function(q, data, validation, CRF, mess, parameters = NULL, patid = "patid", repeatLine = NA, reject = TRUE, prnt = TRUE){
+query = function(q, data, validation, CRF, mess, parameters = NULL, patid = "patid", repeatLine1 = NULL, repeatLine2 = NULL, reject = TRUE, prnt = TRUE){
   mod = as.bigz("900000000000000046043660025881") # nextprime(10^30 - 10^29)
   nme = names(data)
 
@@ -41,7 +41,7 @@ query = function(q, data, validation, CRF, mess, parameters = NULL, patid = "pat
   if(dma[1] > 0){
     for(i in 1:dma[1]){
       a = 0
-      text = paste0(dsub[i,patid], CRF, repeatLine, mess, paste0(validation,collapse = ","))
+      text = paste0(dsub[i,patid], CRF, repeatLine1, repeatLine2, mess, paste0(validation,collapse = ","))
       code = .encode(text)
       dm = dim(q$q)
 
@@ -70,7 +70,7 @@ query = function(q, data, validation, CRF, mess, parameters = NULL, patid = "pat
           thisMessage = paste0(thisMessage,")")
         }
 
-        q$q[dm[1]+1,] <- c(dm[1]+1, code, q$queryRun, dsub[i,patid], CRF, ifelse(is.na(repeatLine),"1",dsub[i,repeatLine]), "Yes", thisMessage, "", "","No")
+        q$q[dm[1]+1,] <- c(dm[1]+1, code, q$queryRun, dsub[i,patid], CRF, ifelse(is.null(repeatLine1),"1",dsub[i,repeatLine1]), ifelse(is.null(repeatLine2),"1",dsub[i,repeatLine2]), "Yes", thisMessage, "", "","No")
       }
     }
     if(prnt){
@@ -115,7 +115,7 @@ queryQ = function(){
   if(dma[1] > 0){
     for(i in 1:dma[1]){
       a = 0
-      text = paste0(dsub[i,patid], CRF, repeatLine, mess, paste0(validation,collapse = ","))
+      text = paste0(dsub[i,patid], CRF, repeatLine1, repeatLine2, mess, paste0(validation,collapse = ","))
       code = .encode(text)
       dm = dim(q$q)
 
@@ -144,7 +144,7 @@ queryQ = function(){
           thisMessage = paste0(thisMessage,")")
         }
 
-        q$q[dm[1]+1,] <- c(dm[1]+1, code, q$queryRun, dsub[i,patid], CRF, ifelse(is.na(repeatLine),"1",dsub[i,repeatLine]), "Yes", thisMessage, "", "","No")
+        q$q[dm[1]+1,] <- c(dm[1]+1, code, q$queryRun, dsub[i,patid], CRF, ifelse(is.null(repeatLine1),"1",dsub[i,repeatLine1]), ifelse(is.null(repeatLine2),"1",dsub[i,repeatLine2]), "Yes", thisMessage, "", "","No")
       }
     }
     if(prnt){
