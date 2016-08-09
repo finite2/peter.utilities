@@ -41,7 +41,15 @@ query = function(q, data, validation, CRF, mess, parameters = NULL, patid = "pat
   if(dma[1] > 0){
     for(i in 1:dma[1]){
       a = 0
-      text = paste0(dsub[i,patid], CRF, repeatLine1, repeatLine2, mess, paste0(validation,collapse = ","))
+      thisMessage = mess
+      if(!is.null(parameters)){
+        thisMessage = paste(thisMessage,"(")
+        for(p in 1:length(parameters)) {
+          thisMessage = paste0(thisMessage, parameters[p]," = ", dsub[i,parameters[p]],ifelse(p == length(parameters),"",", "))
+        }
+        thisMessage = paste0(thisMessage,")")
+      }
+      text = paste0(dsub[i,patid], CRF, repeatLine1, repeatLine2, thisMessage, paste0(validation,collapse = ","))
       code = .encode(text)
       dm = dim(q$q)
 
@@ -61,15 +69,6 @@ query = function(q, data, validation, CRF, mess, parameters = NULL, patid = "pat
       }
       if(a == 0){
         counter[1] = counter[1] + 1
-        thisMessage = mess
-        if(!is.null(parameters)){
-          thisMessage = paste(thisMessage,"(")
-          for(p in 1:length(parameters)) {
-            thisMessage = paste0(thisMessage, parameters[p]," = ", dsub[i,parameters[p]],ifelse(p == length(parameters),"",", "))
-          }
-          thisMessage = paste0(thisMessage,")")
-        }
-
         q$q[dm[1]+1,] <- c(dm[1]+1, code, q$queryRun, dsub[i,patid], CRF, ifelse(is.null(repeatLine1),"1",dsub[i,repeatLine1]), ifelse(is.null(repeatLine2),"1",dsub[i,repeatLine2]), "Yes", thisMessage, "", "","No")
       }
     }
@@ -110,12 +109,20 @@ queryQ = function(){
   dsub = data[ev,]
 
   dma = dim(dsub)
-  # print(dsub)
   counter = c(0,0)
+  # print(dsub)
   if(dma[1] > 0){
     for(i in 1:dma[1]){
       a = 0
-      text = paste0(dsub[i,patid], CRF, repeatLine1, repeatLine2, mess, paste0(validation,collapse = ","))
+      thisMessage = mess
+      if(!is.null(parameters)){
+        thisMessage = paste(thisMessage,"(")
+        for(p in 1:length(parameters)) {
+          thisMessage = paste0(thisMessage, parameters[p]," = ", dsub[i,parameters[p]],ifelse(p == length(parameters),"",", "))
+        }
+        thisMessage = paste0(thisMessage,")")
+      }
+      text = paste0(dsub[i,patid], CRF, repeatLine1, repeatLine2, thisMessage, paste0(validation,collapse = ","))
       code = .encode(text)
       dm = dim(q$q)
 
@@ -135,15 +142,6 @@ queryQ = function(){
       }
       if(a == 0){
         counter[1] = counter[1] + 1
-        thisMessage = mess
-        if(!is.null(parameters)){
-          thisMessage = paste(thisMessage,"(")
-          for(p in 1:length(parameters)) {
-            thisMessage = paste0(thisMessage, parameters[p]," = ", dsub[i,parameters[p]],ifelse(p == length(parameters),"",", "))
-          }
-          thisMessage = paste0(thisMessage,")")
-        }
-
         q$q[dm[1]+1,] <- c(dm[1]+1, code, q$queryRun, dsub[i,patid], CRF, ifelse(is.null(repeatLine1),"1",dsub[i,repeatLine1]), ifelse(is.null(repeatLine2),"1",dsub[i,repeatLine2]), "Yes", thisMessage, "", "","No")
       }
     }
