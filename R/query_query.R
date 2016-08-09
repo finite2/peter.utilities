@@ -37,7 +37,7 @@ query = function(q, data, validation, CRF, mess, parameters = NULL, patid = "pat
   dsub = data[ev,]
 
   dma = dim(dsub)
-  counter = c(dma[1],0)
+  counter = c(0,0)
   if(dma[1] > 0){
     for(i in 1:dma[1]){
       a = 0
@@ -48,7 +48,7 @@ query = function(q, data, validation, CRF, mess, parameters = NULL, patid = "pat
       if(dm[1] > 0){
         if(code %in% q$q$identifier){
           a = 1
-          counter = counter + c(-1,1)
+          counter[2] = counter[2] + 1
           lineNumber = which(code == q$q$identifier)
 
           if(q$q$queryRun[lineNumber] != q$queryRun){
@@ -60,7 +60,7 @@ query = function(q, data, validation, CRF, mess, parameters = NULL, patid = "pat
         }
       }
       if(a == 0){
-
+        counter[1] = counter[1] + 1
         thisMessage = mess
         if(!is.null(parameters)){
           thisMessage = paste(thisMessage,"(")
@@ -111,7 +111,7 @@ queryQ = function(){
 
   dma = dim(dsub)
   # print(dsub)
-  counter = c(dma[1],0)
+  counter = c(0,0)
   if(dma[1] > 0){
     for(i in 1:dma[1]){
       a = 0
@@ -122,7 +122,7 @@ queryQ = function(){
       if(dm[1] > 0){
         if(code %in% q$q$identifier){
           a = 1
-          counter = counter + c(-1,1)
+          counter[2] = counter[2] + 1
           lineNumber = which(code == q$q$identifier)
 
           if(q$q$queryRun[lineNumber] != q$queryRun){
@@ -134,7 +134,7 @@ queryQ = function(){
         }
       }
       if(a == 0){
-
+        counter[1] = counter[1] + 1
         thisMessage = mess
         if(!is.null(parameters)){
           thisMessage = paste(thisMessage,"(")
