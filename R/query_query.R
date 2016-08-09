@@ -29,51 +29,53 @@ query = function(q, data, validation, CRF, mess, parameters = NULL, patid = "pat
   mod = as.bigz("900000000000000046043660025881") # nextprime(10^30 - 10^29)
   nme = names(data)
 
-  ev = if(reject){
-    sapply(with(data,eval(validation)), function(x) isTRUE(x))
-  } else {
-    sapply(with(data,!eval(validation)), function(x) isTRUE(x))
-  }
-  dsub = data[ev,]
-
-  dma = dim(dsub)
-  counter = c(0,0)
-  if(dma[1] > 0){
-    for(i in 1:dma[1]){
-      a = 0
-      thisMessage = mess
-      if(!is.null(parameters)){
-        thisMessage = paste(thisMessage,"(")
-        for(p in 1:length(parameters)) {
-          thisMessage = paste0(thisMessage, parameters[p]," = ", dsub[i,parameters[p]],ifelse(p == length(parameters),"",", "))
-        }
-        thisMessage = paste0(thisMessage,")")
-      }
-      text = paste0(dsub[i,patid], CRF, repeatLine1, repeatLine2, thisMessage, paste0(validation,collapse = ","))
-      code = .encode(text)
-      dm = dim(q$q)
-
-      if(dm[1] > 0){
-        if(code %in% q$q$identifier){
-          a = 1
-          counter[2] = counter[2] + 1
-          lineNumber = which(code == q$q$identifier)
-
-          if(q$q$queryRun[lineNumber] != q$queryRun){
-            q$q$STATSresolved[lineNumber] = "No"
-            q$q$firstQuery[lineNumber] = "No"
-
-          }
-          q$q$queryRun[lineNumber] = q$queryRun
-        }
-      }
-      if(a == 0){
-        counter[1] = counter[1] + 1
-        q$q[dm[1]+1,] <- c(dm[1]+1, code, q$queryRun, dsub[i,patid], CRF, ifelse(is.null(repeatLine1),"1",dsub[i,repeatLine1]), ifelse(is.null(repeatLine2),"1",dsub[i,repeatLine2]), "Yes", thisMessage, "", "","No")
-      }
+  if(dim(data)[1] > 0){
+    ev = if(reject){
+      sapply(with(data,eval(validation)), function(x) isTRUE(x))
+    } else {
+      sapply(with(data,!eval(validation)), function(x) isTRUE(x))
     }
-    if(prnt){
-      message("New queries: ", counter[1], " Unresolved queries: ", counter[2])
+    dsub = data[ev,]
+
+    dma = dim(dsub)
+    counter = c(0,0)
+    if(dma[1] > 0){
+      for(i in 1:dma[1]){
+        a = 0
+        thisMessage = mess
+        if(!is.null(parameters)){
+          thisMessage = paste(thisMessage,"(")
+          for(p in 1:length(parameters)) {
+            thisMessage = paste0(thisMessage, parameters[p]," = ", dsub[i,parameters[p]],ifelse(p == length(parameters),"",", "))
+          }
+          thisMessage = paste0(thisMessage,")")
+        }
+        text = paste0(dsub[i,patid], CRF, repeatLine1, repeatLine2, thisMessage, paste0(validation,collapse = ","))
+        code = .encode(text)
+        dm = dim(q$q)
+
+        if(dm[1] > 0){
+          if(code %in% q$q$identifier){
+            a = 1
+            counter[2] = counter[2] + 1
+            lineNumber = which(code == q$q$identifier)
+
+            if(q$q$queryRun[lineNumber] != q$queryRun){
+              q$q$STATSresolved[lineNumber] = "No"
+              q$q$firstQuery[lineNumber] = "No"
+
+            }
+            q$q$queryRun[lineNumber] = q$queryRun
+          }
+        }
+        if(a == 0){
+          counter[1] = counter[1] + 1
+          q$q[dm[1]+1,] <- c(dm[1]+1, code, q$queryRun, dsub[i,patid], CRF, ifelse(is.null(repeatLine1),"1",dsub[i,repeatLine1]), ifelse(is.null(repeatLine2),"1",dsub[i,repeatLine2]), "Yes", thisMessage, "", "","No")
+        }
+      }
+      if(prnt){
+        message("New queries: ", counter[1], " Unresolved queries: ", counter[2])
+      }
     }
   }
 }
@@ -100,53 +102,54 @@ queryQ = function(){
 
   mod = as.bigz("900000000000000046043660025881") # nextprime(10^30 - 10^29)
   nme = names(data)
-
-  ev = if(reject){
-    sapply(with(data,eval(validation)), function(x) isTRUE(x))
-  } else {
-    sapply(with(data,!eval(validation)), function(x) isTRUE(x))
-  }
-  dsub = data[ev,]
-
-  dma = dim(dsub)
-  counter = c(0,0)
-  # print(dsub)
-  if(dma[1] > 0){
-    for(i in 1:dma[1]){
-      a = 0
-      thisMessage = mess
-      if(!is.null(parameters)){
-        thisMessage = paste(thisMessage,"(")
-        for(p in 1:length(parameters)) {
-          thisMessage = paste0(thisMessage, parameters[p]," = ", dsub[i,parameters[p]],ifelse(p == length(parameters),"",", "))
-        }
-        thisMessage = paste0(thisMessage,")")
-      }
-      text = paste0(dsub[i,patid], CRF, repeatLine1, repeatLine2, thisMessage, paste0(validation,collapse = ","))
-      code = .encode(text)
-      dm = dim(q$q)
-
-      if(dm[1] > 0){
-        if(code %in% q$q$identifier){
-          a = 1
-          counter[2] = counter[2] + 1
-          lineNumber = which(code == q$q$identifier)
-
-          if(q$q$queryRun[lineNumber] != q$queryRun){
-            q$q$STATSresolved[lineNumber] = "No"
-            q$q$firstQuery[lineNumber] = "No"
-
-          }
-          q$q$queryRun[lineNumber] = q$queryRun
-        }
-      }
-      if(a == 0){
-        counter[1] = counter[1] + 1
-        q$q[dm[1]+1,] <- c(dm[1]+1, code, q$queryRun, dsub[i,patid], CRF, ifelse(is.null(repeatLine1),"1",dsub[i,repeatLine1]), ifelse(is.null(repeatLine2),"1",dsub[i,repeatLine2]), "Yes", thisMessage, "", "","No")
-      }
+  if(dim(data)[1] > 0){
+    ev = if(reject){
+      sapply(with(data,eval(validation)), function(x) isTRUE(x))
+    } else {
+      sapply(with(data,!eval(validation)), function(x) isTRUE(x))
     }
-    if(prnt){
-      message("New queries: ", counter[1], " Unresolved queries: ", counter[2])
+    dsub = data[ev,]
+
+    dma = dim(dsub)
+    counter = c(0,0)
+    # print(dsub)
+    if(dma[1] > 0){
+      for(i in 1:dma[1]){
+        a = 0
+        thisMessage = mess
+        if(!is.null(parameters)){
+          thisMessage = paste(thisMessage,"(")
+          for(p in 1:length(parameters)) {
+            thisMessage = paste0(thisMessage, parameters[p]," = ", dsub[i,parameters[p]],ifelse(p == length(parameters),"",", "))
+          }
+          thisMessage = paste0(thisMessage,")")
+        }
+        text = paste0(dsub[i,patid], CRF, repeatLine1, repeatLine2, thisMessage, paste0(validation,collapse = ","))
+        code = .encode(text)
+        dm = dim(q$q)
+
+        if(dm[1] > 0){
+          if(code %in% q$q$identifier){
+            a = 1
+            counter[2] = counter[2] + 1
+            lineNumber = which(code == q$q$identifier)
+
+            if(q$q$queryRun[lineNumber] != q$queryRun){
+              q$q$STATSresolved[lineNumber] = "No"
+              q$q$firstQuery[lineNumber] = "No"
+
+            }
+            q$q$queryRun[lineNumber] = q$queryRun
+          }
+        }
+        if(a == 0){
+          counter[1] = counter[1] + 1
+          q$q[dm[1]+1,] <- c(dm[1]+1, code, q$queryRun, dsub[i,patid], CRF, ifelse(is.null(repeatLine1),"1",dsub[i,repeatLine1]), ifelse(is.null(repeatLine2),"1",dsub[i,repeatLine2]), "Yes", thisMessage, "", "","No")
+        }
+      }
+      if(prnt){
+        message("New queries: ", counter[1], " Unresolved queries: ", counter[2])
+      }
     }
   }
 }
