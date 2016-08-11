@@ -4,7 +4,7 @@
 #'
 #' A function for testing queries on some data. This function uses the gmp package to match data queries which were asked previously.
 #'
-#' @param q An object of reference class dataQueries
+#' @param queries An object of reference class dataQueries
 #' @param data The database to check is valid
 #' @param validation a quote object to test with the data
 #' @param CRF The CRF name (string)
@@ -25,7 +25,7 @@
 #' @importFrom gmp %*%
 #' @importFrom gmp numerator
 #' @export query
-query = function(q, data, validation, CRF, mess, parameters = NULL, patid = "patid", repeatLine1 = NULL, repeatLine2 = NULL, reject = TRUE, prnt = TRUE){
+query = function(queries, data, validation, CRF, mess, parameters = NULL, patid = "patid", repeatLine1 = NULL, repeatLine2 = NULL, reject = TRUE, prnt = TRUE){
   mod = as.bigz("900000000000000046043660025881") # nextprime(10^30 - 10^29)
   nme = names(data)
 
@@ -52,25 +52,25 @@ query = function(q, data, validation, CRF, mess, parameters = NULL, patid = "pat
         }
         text = paste0(dsub[i,patid], CRF, repeatLine1, repeatLine2, thisMessage, paste0(validation,collapse = ","))
         code = .encode(text)
-        dm = dim(q$q)
+        dm = dim(queries$q)
 
         if(dm[1] > 0){
-          if(code %in% q$q$identifier){
+          if(code %in% queries$q$identifier){
             a = 1
             counter[2] = counter[2] + 1
-            lineNumber = which(code == q$q$identifier)
+            lineNumber = which(code == queries$q$identifier)
 
-            if(q$q$queryRun[lineNumber] != q$queryRun){
-              q$q$STATSresolved[lineNumber] = "No"
-              q$q$firstQuery[lineNumber] = "No"
+            if(queries$q$queryRun[lineNumber] != queries$queryRun){
+              queries$q$STATSresolved[lineNumber] = "No"
+              queries$q$firstQuery[lineNumber] = "No"
 
             }
-            q$q$queryRun[lineNumber] = q$queryRun
+            queries$q$queryRun[lineNumber] = queries$queryRun
           }
         }
         if(a == 0){
           counter[1] = counter[1] + 1
-          q$q[dm[1]+1,] <- c(dm[1]+1, code, q$queryRun, dsub[i,patid], CRF, ifelse(is.null(repeatLine1),"1",dsub[i,repeatLine1]), ifelse(is.null(repeatLine2),"1",dsub[i,repeatLine2]), "Yes", thisMessage, "", "","No")
+          queries$q[dm[1]+1,] <- c(dm[1]+1, code, queries$queryRun, dsub[i,patid], CRF, ifelse(is.null(repeatLine1),"1",dsub[i,repeatLine1]), ifelse(is.null(repeatLine2),"1",dsub[i,repeatLine2]), "Yes", thisMessage, "", "","No")
         }
       }
       if(prnt){
@@ -126,24 +126,26 @@ queryQ = function(){
         }
         text = paste0(dsub[i,patid], CRF, repeatLine1, repeatLine2, thisMessage, paste0(validation,collapse = ","))
         code = .encode(text)
-        dm = dim(q$q)
+
+        dm = dim(queries$q)
+
         if(dm[1] > 0){
-          if(code %in% q$q$identifier){
+          if(code %in% queries$q$identifier){
             a = 1
             counter[2] = counter[2] + 1
-            lineNumber = which(code == q$q$identifier)
+            lineNumber = which(code == queries$q$identifier)
 
-            if(q$q$queryRun[lineNumber] != q$queryRun){
-              q$q$STATSresolved[lineNumber] = "No"
-              q$q$firstQuery[lineNumber] = "No"
+            if(queries$q$queryRun[lineNumber] != queries$queryRun){
+              queries$q$STATSresolved[lineNumber] = "No"
+              queries$q$firstQuery[lineNumber] = "No"
 
             }
-            q$q$queryRun[lineNumber] = q$queryRun
+            queries$q$queryRun[lineNumber] = queries$queryRun
           }
         }
         if(a == 0){
           counter[1] = counter[1] + 1
-          q$q[dm[1]+1,] <- c(dm[1]+1, code, q$queryRun, dsub[i,patid], CRF, ifelse(is.null(repeatLine1),"1",dsub[i,repeatLine1]), ifelse(is.null(repeatLine2),"1",dsub[i,repeatLine2]), "Yes", thisMessage, "", "","No")
+          queries$q[dm[1]+1,] <- c(dm[1]+1, code, queries$queryRun, dsub[i,patid], CRF, ifelse(is.null(repeatLine1),"1",dsub[i,repeatLine1]), ifelse(is.null(repeatLine2),"1",dsub[i,repeatLine2]), "Yes", thisMessage, "", "","No")
         }
       }
       if(prnt){
