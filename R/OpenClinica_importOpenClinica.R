@@ -91,7 +91,7 @@ import.openClinica.batch = function(path,trialStub,dbName,newFolder,delStub=""){
   # must be text files
   files=files[grep(".txt",files)]
 
-  print(files)
+  # print(files)
   # create folder for resulting Rdta file
   dir.create(newFolder)
 

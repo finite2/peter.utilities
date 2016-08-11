@@ -127,7 +127,6 @@ queryQ = function(){
         text = paste0(dsub[i,patid], CRF, repeatLine1, repeatLine2, thisMessage, paste0(validation,collapse = ","))
         code = .encode(text)
         dm = dim(q$q)
-
         if(dm[1] > 0){
           if(code %in% q$q$identifier){
             a = 1
