@@ -6,7 +6,7 @@
 \title{query}
 \usage{
 query(q, data, validation, CRF, mess, parameters = NULL, patid = "patid",
-  repeatLine = NA, reject = TRUE, prnt = TRUE)
+  repeatLine1 = NULL, repeatLine2 = NULL, reject = TRUE, prnt = TRUE)
 
 queryQ()
 }
@@ -25,7 +25,7 @@ queryQ()
 
 \item{patid}{Name for the main identifier column. Repeat line can take a second. Any others should be added to parameters.}
 
-\item{repeatLine}{Name of a line reference column when data is in long format with respect to patid}
+\item{repeatLine1, repeatLine2}{Name of a line reference column when data is in long format with respect to patid}
 
 \item{reject}{Logical should the validation be TRUE or FALSE to report the query?}
 

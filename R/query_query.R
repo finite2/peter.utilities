@@ -21,9 +21,9 @@
 #'
 #' @example examples/query_example.R
 #' @import gmp
-#' @importFrom gmp nextprime
 #' @importFrom gmp as.bigz
 #' @importFrom gmp %*%
+#' @importFrom gmp numerator
 #' @export query
 query = function(q, data, validation, CRF, mess, parameters = NULL, patid = "patid", repeatLine1 = NULL, repeatLine2 = NULL, reject = TRUE, prnt = TRUE){
   mod = as.bigz("900000000000000046043660025881") # nextprime(10^30 - 10^29)
@@ -100,7 +100,7 @@ queryQ = function(){
     reject = TRUE
   }
 
-  mod = as.bigz("900000000000000046043660025881") # nextprime(10^30 - 10^29)
+  mod = as.bigz("900000000000000046043660025881") # gmp::nextprime(10^30 - 10^29)
   nme = names(data)
   if(dim(data)[1] > 0){
     ev = if(reject){

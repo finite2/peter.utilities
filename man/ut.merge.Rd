@@ -4,10 +4,10 @@
 \alias{ut.merge}
 \title{Merge databases}
 \usage{
-ut.merge(merge.param, db1, db2, entries1, entries2)
+ut.merge(mergeParam, db1, db2, entries1, entries2)
 }
 \arguments{
-\item{merge.param}{A vector of column names to use to merge data}
+\item{mergeParam}{A vector of column names to use to merge data}
 
 \item{db1, db2}{The data.frames to merge}
 
@@ -15,5 +15,10 @@ ut.merge(merge.param, db1, db2, entries1, entries2)
 }
 \description{
 Provides a function simular to merge in Stata to merge data from two data.frames.
+}
+\details{
+Merges 1:1, 1:M or M:1. M:M merging is not supported because this makes unfounded assumptions about the ordering of varaibles. It is better to specify an additional mergeParam column to merge with to explicitely asign M:M matches.
+
+Returns a column named merged denoting 1 for db1, 2 for db2 and 3 for row found in both. Note this will overwrite previous merge columns if they exist.
 }
 
