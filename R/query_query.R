@@ -161,7 +161,11 @@ queryQ = function(){
 
 .encode = function(text){
   num = .hexNumber(text)
-  big = as.bigz(paste0(1,num), mod = "900000000000000046043660025881") # mod = nextprime(10^30 - 10^29)
+  print(num)
+  big = as.bigz(paste0(1,num))
+  modulus(big) = as.bigz("900000000000000046043660025881")
+  print(big)
+  # big = as.bigz(bn , mod = "900000000000000046043660025881") # mod = nextprime(10^30 - 10^29)
   return(as.character(numerator(big)))
 }
 
