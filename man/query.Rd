@@ -5,13 +5,14 @@
 \alias{queryQ}
 \title{query}
 \usage{
-query(q, data, validation, CRF, mess, parameters = NULL, patid = "patid",
-  repeatLine1 = NULL, repeatLine2 = NULL, reject = TRUE, prnt = TRUE)
+query(queries, data, validation, CRF, mess, parameters = NULL,
+  patid = "patid", repeatLine1 = NULL, repeatLine2 = NULL,
+  reject = TRUE, prnt = TRUE)
 
 queryQ()
 }
 \arguments{
-\item{q}{An object of reference class dataQueries}
+\item{queries}{An object of reference class dataQueries}
 
 \item{data}{The database to check is valid}
 
