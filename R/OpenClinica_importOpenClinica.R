@@ -19,8 +19,8 @@
 #' (path,trialStub,dbName,newFolder,delStub="")
 #'
 #'
-#' @export import.openClinica
-import.openClinica=function(txt,path,dates=NULL){
+#' @export importOpenClinica
+importOpenClinica=function(txt,path,dates=NULL){
 
 
   # read trialData from comma delimited text file
@@ -80,9 +80,9 @@ import.openClinica=function(txt,path,dates=NULL){
   return(trialData)
 }
 
-#' @rdname import.openClinica Runs import.openClinica on a folder and saves to an .Rdata file.
-#' @export import.openClinica.batch
-import.openClinica.batch = function(path,trialStub,dbName,newFolder,delStub=""){
+#' @describeIn importOpenClinica Runs importOpenClinica on a folder and saves to an .Rdata file.
+#' @export importOpenClinica_batch
+importOpenClinica_batch = function(path,trialStub,dbName,newFolder,delStub=""){
 
   # find all files of interest
   files=list.files(paste0(path))

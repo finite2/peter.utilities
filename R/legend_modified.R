@@ -6,6 +6,8 @@
 #' @param ybox Scales up the y-direction of boxes (generated when colours are provided to fill). If this is 2 then the boxes will touch in vertical mode. Default 1.
 #' @param pt.cex the sizing for the text
 #' @param title.cex the sizing for the title if provided.
+#'
+#' @export legend_modified
 legend_modified = function (x, y = NULL, legend, fill = NULL, col = par("col"),
                             border = "black", lty, lwd, pch, angle = 45, density = NULL,
                             bty = "o", bg = par("bg"), box.lwd = par("lwd"), box.lty = par("lty"),
