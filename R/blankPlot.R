@@ -9,5 +9,5 @@
 #'
 #' @export blankPlot
 blankPlot = function(xlim = c(0,1), ylim = c(0,1), xaxs = "i", yaxs = "i"){
-  plot(0,0,axes = FALSE, xlab = "", ylab = "", xaxs = xaxs, yaxs = yaxs, type = "n")
+  plot(0,0,axes = FALSE, xlim = xlim, ylim = ylim, xlab = "", ylab = "", xaxs = xaxs, yaxs = yaxs, type = "n")
 }
