@@ -3,6 +3,7 @@
 export(OC_posIXct)
 export(addrow)
 export(blankPlot)
+export(boxDensityPlot)
 export(getValue)
 export(importOpenClinica)
 export(importOpenClinica_batch)
