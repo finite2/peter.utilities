@@ -4,9 +4,9 @@
 \alias{boxDensityPlot}
 \title{boxDensityPlot}
 \usage{
-boxDensityPlot(dta, diff = 0.1, rnd = 0.01, xaxs = "i", yaxs = "i",
-  ylab = "Density", xlab = "test", col = 2, border = 1, add = FALSE,
-  xlim = NULL, ylim = NULL, ...)
+boxDensityPlot(dta, type = "p", diff = 0.1, rnd = 0.01, xaxs = "i",
+  yaxs = "i", ylab = "Density", xlab = "test", col = 2, border = 1,
+  add = FALSE, xlim = NULL, ylim = NULL, ...)
 }
 \arguments{
 \item{dta}{The data}
@@ -28,4 +28,3 @@ boxDensityPlot(dta, diff = 0.1, rnd = 0.01, xaxs = "i", yaxs = "i",
 \description{
 This is an alternative plot to hist or plot density. Instead of binning or smoothing each item is drawn around its position +- diff. These are then stacked vertically. A rounding option is built in to give a cleaner building block look.
 }
-

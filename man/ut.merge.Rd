@@ -21,4 +21,3 @@ Merges 1:1, 1:M or M:1. M:M merging is not supported because this makes unfounde
 
 Returns a column named merged denoting 1 for db1, 2 for db2 and 3 for row found in both. Note this will overwrite previous merge columns if they exist.
 }
-

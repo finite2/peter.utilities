@@ -12,4 +12,3 @@ OC_posIXct(data)
 \description{
 This is a wrapper for \code{\link{as.POSIXct}} to make formating dates consistently and easily from Open clinica databases.
 }
-

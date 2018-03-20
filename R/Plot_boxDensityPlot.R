@@ -13,11 +13,16 @@
 #' @param ... other values passed to the polygon function
 
 #' @export boxDensityPlot
-boxDensityPlot = function(dta,diff = 0.1, rnd = 0.01, xaxs = "i", yaxs = "i", ylab = "Density", xlab = "test", col = 2, border = 1, add = FALSE, xlim = NULL, ylim = NULL, ...){
+boxDensityPlot = function(dta, type = "p",diff = 0.1, rnd = 0.01, xaxs = "i", yaxs = "i", ylab = "Density", xlab = "test", col = 2, border = 1, add = FALSE, xlim = NULL, ylim = NULL, ...){
 
   dta = round(dta / rnd) * rnd
   dta_min = round((dta - diff) / rnd) * rnd
   dta_max = round((dta + diff) / rnd) * rnd
+
+  multiplier = 1
+  if(type == "p") {
+    multiplier = 1/length(dta)
+  }
 
   x = rep(0,0)
   y = rep(0,0)
@@ -26,7 +31,7 @@ boxDensityPlot = function(dta,diff = 0.1, rnd = 0.01, xaxs = "i", yaxs = "i", yl
     y = c(y, sum(i > dta_min  & i <= dta_max, na.rm = TRUE), sum(i >= dta_min  & i < dta_max, na.rm = TRUE))
   }
 
-  y = y/(2*diff)
+  y = y/(2*diff)*multiplier
   if(!add){
 
     if(is.null(xlim)){

@@ -18,4 +18,3 @@ blankPlot(xlim = c(0, 1), ylim = c(0, 1), xaxs = "i", yaxs = "i")
 \description{
 This is a convinience wrapper function for creating a blank plot. You only need to suppy limits to initialise the plot. Then add to the plot using axis, points, lines, mtext, legend etc.
 }
-

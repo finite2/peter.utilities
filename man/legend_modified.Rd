@@ -27,4 +27,3 @@ legend_modified(x, y = NULL, legend, fill = NULL, col = par("col"),
 \description{
 This is a modified version of the base function \code{\link{legend}}. In particular it adds xbox, ybox, title.cex and returns functionality to pt.cex which is broken in the base version.
 }
-

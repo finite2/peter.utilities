@@ -8,4 +8,4 @@ Maintainer: Peter Dutton <peter.dutton@ndorms.ox.ac.uk>
 Description: Contains some useful utility functions for R.
 depends: gmp
 License: None
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
