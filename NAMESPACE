@@ -2,8 +2,10 @@
 
 export(OC_posIXct)
 export(addrow)
+export(adjColor)
 export(blankPlot)
 export(boxDensityPlot)
+export(expandColours)
 export(getValue)
 export(importOpenClinica)
 export(importOpenClinica_batch)
